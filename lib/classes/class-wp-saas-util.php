@@ -8,8 +8,9 @@ namespace UsabilityDynamics\SAAS_UTIL {
 
       /**
        * @var string
+       * @todo unhardcode `property` thing
        */
-      private $api_url = 'https://api.usabilitydynamics.com/product/v1/site/register';
+      private $api_url = 'https://api.usabilitydynamics.com/product/property/site/register/v1';
 
       /**
        * Register constructor.
@@ -33,7 +34,7 @@ namespace UsabilityDynamics\SAAS_UTIL {
        */
       private function maybe_register() {
 
-        add_site_option( 'ud_site_secret_token', $ud_site_secret_token = md5( wp_generate_password( 20 ) ) );
+        update_site_option( 'ud_site_secret_token', $ud_site_secret_token = md5( wp_generate_password( 20 ) ) );
 
         if ( is_multisite() ) {
 
@@ -54,11 +55,11 @@ namespace UsabilityDynamics\SAAS_UTIL {
             'httpversion' => '1.0',
             'headers' => array(),
             'body' => array(
-              'host' => $host,
-              'ud_site_secret_token' => $ud_site_secret_token,
-              'ud_site_id' => ( $ud_site_id ? $ud_site_id : '' ),
-              'home_url' => $site_url,
-              'message' => "Hey, I'm WordPress site with UD product. I need a key."
+                'host' => $host,
+                'ud_site_secret_token' => $ud_site_secret_token,
+                'ud_site_id' => ( $ud_site_id ? $ud_site_id : '' ),
+                'home_url' => $site_url,
+                'message' => "Hey, I'm WordPress site with UD product. I need a key."
             )
         );
 
@@ -71,11 +72,11 @@ namespace UsabilityDynamics\SAAS_UTIL {
           if( isset( $api_body ) && $api_body->ud_site_secret_token === $ud_site_secret_token ) {
 
             if( isset( $api_body->ud_site_id ) ) {
-              add_site_option( 'ud_site_id', $api_body->ud_site_id );
+              update_site_option( 'ud_site_id', $api_body->ud_site_id );
             }
 
             if( isset( $api_body->ud_site_public_key ) ) {
-              add_site_option( 'ud_site_public_key', $api_body->ud_site_public_key );
+              update_site_option( 'ud_site_public_key', $api_body->ud_site_public_key );
             }
 
           }
