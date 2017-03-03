@@ -21,7 +21,7 @@ Register::product( $product_id, $meta );
 ### API Methods
 
 The library also contains the set of API methods.
-Note, methods are getting/setting data ONLY for particular Site/Blog.
+( Note, methods are getting/setting data ONLY for particular Site/Blog )
 
 #### Subscriptions
 
@@ -57,7 +57,7 @@ Register:add_subscription( $product_id, $subscription_id );
 ```
 
 To remove Subscription for particular Product.
-Note, if no subscriptions left, default one will be set!
+( Note, if no subscriptions left, default one will be set! )
 
 ```php
 /**
@@ -103,8 +103,8 @@ Register:update_billing( $product_id, array(
 ) );
 ```
 
-To remove Billing Information
-Resets all subscriptions to basic (free) ones.
+To remove Billing Information.
+( Note, it resets all subscriptions to free ones )
 
 ```php
 /**
