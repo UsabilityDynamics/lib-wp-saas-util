@@ -322,7 +322,8 @@ namespace UsabilityDynamics\SAAS_UTIL {
         }
 
         if ( !$data ) {
-          $data = is_wp_error( $response ) ? $response : ( new \WP_Error( 'fail', 'Failed getting available Subscriptions' ) );
+          $message = ( !empty( $api_body ) && !empty( $api_body['message'] ) ) ? (string)$api_body['message'] : "Failed getting available Subscriptions";
+          $data = is_wp_error( $response ) ? $response : ( new \WP_Error( 'fail', $message ) );
         }
 
         return $data;
@@ -335,7 +336,7 @@ namespace UsabilityDynamics\SAAS_UTIL {
        * @param $product SaaS Product ID
        * @return array
        */
-      public static function get_current_subscription( $product ) {
+      public static function get_current_subscriptions( $product ) {
 
         $instance = self::get_instance();
 
@@ -367,7 +368,8 @@ namespace UsabilityDynamics\SAAS_UTIL {
         }
 
         if ( !$data ) {
-          $data = is_wp_error( $response ) ? $response : ( new \WP_Error( 'fail', 'Failed getting current Subscriptions' ) );
+          $message = ( !empty( $api_body ) && !empty( $api_body['message'] ) ) ? (string)$api_body['message'] : "Failed getting current active Subscriptions";
+          $data = is_wp_error( $response ) ? $response : ( new \WP_Error( 'fail', $message ) );
         }
 
         return $data;
@@ -414,7 +416,8 @@ namespace UsabilityDynamics\SAAS_UTIL {
         }
 
         if ( !$data ) {
-          $data = is_wp_error( $response ) ? $response : ( new \WP_Error( 'fail', 'Failed adding Subscription' ) );
+          $message = ( !empty( $api_body ) && !empty( $api_body['message'] ) ) ? (string)$api_body['message'] : "Failed adding Subscription";
+          $data = is_wp_error( $response ) ? $response : ( new \WP_Error( 'fail', $message ) );
         }
 
         return $data;
@@ -462,7 +465,8 @@ namespace UsabilityDynamics\SAAS_UTIL {
         }
 
         if ( !$data ) {
-          $data = is_wp_error( $response ) ? $response : ( new \WP_Error( 'fail', 'Failed removing Subscription' ) );
+          $message = ( !empty( $api_body ) && !empty( $api_body['message'] ) ) ? (string)$api_body['message'] : "Failed removing Subscription";
+          $data = is_wp_error( $response ) ? $response : ( new \WP_Error( 'fail', $message ) );
         }
 
         return $data;
@@ -506,7 +510,8 @@ namespace UsabilityDynamics\SAAS_UTIL {
         }
 
         if ( !$data ) {
-          $data = is_wp_error( $response ) ? $response : ( new \WP_Error( 'fail', 'Failed retrieving Billing Information' ) );
+          $message = ( !empty( $api_body ) && !empty( $api_body['message'] ) ) ? (string)$api_body['message'] : "Failed retrieving Billing Information";
+          $data = is_wp_error( $response ) ? $response : ( new \WP_Error( 'fail', $message ) );
         }
 
         return $data;
@@ -565,7 +570,8 @@ namespace UsabilityDynamics\SAAS_UTIL {
         }
 
         if ( !$data ) {
-          $data = is_wp_error( $response ) ? $response : ( new \WP_Error( 'fail', 'Failed updating Billing Information' ) );
+          $message = ( !empty( $api_body ) && !empty( $api_body['message'] ) ) ? (string)$api_body['message'] : "Failed updating Billing Information";
+          $data = is_wp_error( $response ) ? $response : ( new \WP_Error( 'fail', $message ) );
         }
 
         return $data;
@@ -609,7 +615,8 @@ namespace UsabilityDynamics\SAAS_UTIL {
         }
 
         if ( !$data ) {
-          $data = is_wp_error( $response ) ? $response : ( new \WP_Error( 'fail', 'Failed removing Billing Information' ) );
+          $message = ( !empty( $api_body ) && !empty( $api_body['message'] ) ) ? (string)$api_body['message'] : "Failed removing Billing Information";
+          $data = is_wp_error( $response ) ? $response : ( new \WP_Error( 'fail', $message ) );
         }
 
         return $data;
