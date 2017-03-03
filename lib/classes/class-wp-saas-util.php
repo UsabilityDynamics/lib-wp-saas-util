@@ -176,7 +176,7 @@ namespace UsabilityDynamics\SAAS_UTIL {
           // And there is nothing new to update
           $options = get_option( $prefix.$product );
           if( $options == $hash ) {
-            //continue;
+            continue;
           }
 
           // Determine if Product registration/update is temporarily disabled.
@@ -185,7 +185,7 @@ namespace UsabilityDynamics\SAAS_UTIL {
             continue;
           }
           // Set registration back-off to avoid this being ran multiple times.
-          set_transient( $product, array( 'registration-backoff' => true, 'time' => time() ), 3600 );
+          set_transient( $prefix.$product, array( 'registration-backoff' => true, 'time' => time() ), 3600 );
 
           $products[ $product ] = $meta;
 
