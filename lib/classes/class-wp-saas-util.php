@@ -92,7 +92,7 @@ namespace UsabilityDynamics\SAAS_UTIL {
         // Determine if Registration is temporarily disabled.
         $_state = get_transient('ud_registration_state');
         if( $_state && is_array( $_state ) && $_state[ 'registration-backoff' ] ) {
-          //return;
+          return;
         }
         // Set registration back-off to avoid this being ran multiple times.
         set_transient('ud_registration_state', array( 'registration-backoff' => true, 'time' => time() ), 3600 );
@@ -176,7 +176,7 @@ namespace UsabilityDynamics\SAAS_UTIL {
           // And there is nothing new to update
           $options = get_option( $prefix.$product );
           if( $options == $hash ) {
-            //continue;
+            continue;
           }
 
           // Determine if Product registration/update is temporarily disabled.
@@ -185,7 +185,7 @@ namespace UsabilityDynamics\SAAS_UTIL {
             continue;
           }
           // Set registration back-off to avoid this being ran multiple times.
-          set_transient( $product, array( 'registration-backoff' => true, 'time' => time() ), 3600 );
+          set_transient( $prefix.$product, array( 'registration-backoff' => true, 'time' => time() ), 3600 );
 
           $products[ $product ] = $meta;
 
@@ -210,7 +210,7 @@ namespace UsabilityDynamics\SAAS_UTIL {
             'user_id' => get_current_user_id(),
             'user_email' => wp_get_current_user()->user_email,
             'home_url' => get_site_url(),
-            'products' => $products
+            'products' => json_encode($products)
           )
         );
 
