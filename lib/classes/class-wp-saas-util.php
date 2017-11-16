@@ -623,6 +623,15 @@ namespace UsabilityDynamics\SAAS_UTIL {
       }
 
       /**
+       * Function for generation secret auth key
+       *
+       * @param int $length
+       */
+      public static function generate_secret_key($length = 16){
+        bin2hex(random_bytes($length));
+      }
+
+      /**
        *
        */
       private static function get_instance() {
